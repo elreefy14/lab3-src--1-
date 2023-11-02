@@ -1,0 +1,41 @@
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
+Child terminated with signal number: 17
