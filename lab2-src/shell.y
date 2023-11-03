@@ -13,7 +13,7 @@
 
 %token	<string_val> WORD
 
-%token 	NOTOKEN GREAT  LESS NEWLINE GREATGREAT PIPE BACKGROUND GREATGREATBACK EXIT
+%token 	NOTOKEN GREAT  LESS NEWLINE GREATGREAT	PIPE BACKGROUND GREATGREATBACK EXIT
 
 %union	{
 		char   *string_val;
@@ -28,21 +28,7 @@ extern "C"
 #define yylex yylex
 #include <stdio.h>
 #include "command.h"
-#include <string>
-#include <unistd.h> 
-#include <fstream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/wait.h>
-#include <string.h>
-#include <signal.h>
 
-#include "command.h"
-#include <regex.h>
 %}
 
 %%
@@ -56,14 +42,16 @@ commands:
 	| commands command 
 	;
 
-command:
-    simple_command
-    | EXIT {
-        printf("   Yacc: Exit\n");
-		printf("   see you next soon ^_^\n");
-        exit(0);
-    }
-    ;
+command: simple_command
+      |
+	EXIT   { 
+	printf("   Yacc: Exit\n");
+	printf("see you sooooooooooooon ^_^ \n");
+
+	   exit(0) ;	
+        	}
+        ;
+
 simple_command:	
 	command_and_args iomodifier_opt NEWLINE {
 		printf("   Yacc: Execute command\n");
@@ -107,13 +95,14 @@ iomodifier_opt:
 	GREAT WORD {
 		printf("   Yacc: insert output \"%s\"\n", $2);
 		Command::_currentCommand._outFile = $2;
+		Command::_currentCommand._append = 0;
 	
 	}
 	|	LESS WORD {
 		printf("   Yacc: insert input \"%s\"\n", $2);
 		Command::_currentCommand._inputFile = $2;
 	} 
-	| 	GREATGREAT WORD {
+	| 	GREATGREAT	 WORD {
 		printf("   Yacc: insert output \"%s\"\n", $2);
 		Command::_currentCommand._outFile = $2;
 		Command::_currentCommand._append = 1;
@@ -126,12 +115,11 @@ iomodifier_opt:
 		printf("   Yacc: insert input \"%s\"\n", $2);
 		Command::_currentCommand._inputFile = $2;
 	} 
-	| 	GREATGREAT WORD iomodifier_opt  {
+	| 	GREATGREAT	 WORD iomodifier_opt  {
 		printf("   Yacc: insert output \"%s\"\n", $2);
 		Command::_currentCommand._outFile = $2;
 	} | PIPE commands {
-		//handle pipe 
-		Command::_currentCommand._pipe = 1;
+		
 	                      } 
         
 	|   BACKGROUND {
@@ -140,6 +128,7 @@ iomodifier_opt:
                   } 
     | 	
 	GREATGREATBACK WORD {
+	 
 		Command::_currentCommand._append = 1;
 		Command::_currentCommand._errFile = $2;
 		 Command::_currentCommand._background= 1;

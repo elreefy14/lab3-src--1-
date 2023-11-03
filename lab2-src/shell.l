@@ -28,10 +28,10 @@
 		return GREAT;
 	}
 ">>" 	{
-		return DOUBLEGREAT;
+		return GREATGREAT;
 	}	
 "<" 	{
-		return SMALL;
+		return LESS;
 	}
 "|"	{
 		return PIPE;
