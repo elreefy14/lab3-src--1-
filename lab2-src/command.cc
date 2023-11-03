@@ -10,7 +10,7 @@
  */
 
 #include <fstream> // Add this line to include the fstream header
- #include <fcntl.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <unistd.h> 
 #include <stdio.h>
@@ -174,11 +174,16 @@ Command::execute()
 				dup2(fd, 0);
 				close(fd);
 			}
-			if (_outFile) {
-				int fd = open(_outFile, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-				dup2(fd, 1);
-				close(fd);
-			}
+		if (_outFile) {
+    int fd;
+    if (_append) {
+        fd = open(_outFile, O_WRONLY | O_CREAT | O_APPEND, 0666);
+    } else {
+        fd = open(_outFile, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    }
+    dup2(fd, 1);
+    close(fd);
+}
 			if (_errFile) {
 				int fd = open(_errFile, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 				dup2(fd, 2);
